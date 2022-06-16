@@ -1,0 +1,91 @@
+points = [
+    Point(75, 442, 10, batch, fixed = True),Point(79, 374, 10, batch),Point(78, 304, 10, batch),Point(80, 228, 10, batch),
+    Point(149, 446, 10, batch, fixed = True),Point(145, 374, 10, batch),Point(141, 300, 10, batch),Point(137, 228, 10, batch),
+    Point(238, 448, 10, batch, fixed = True),Point(239, 363, 10, batch),Point(239, 300, 10, batch),Point(238, 225, 10, batch),
+    Point(347, 446, 10, batch, fixed = True),Point(353, 345, 10, batch),Point(351, 281, 10, batch),Point(352, 223, 10, batch)
+    ]
+
+sticks = [
+    Stick(points[0], points[1], batch),
+    Stick(points[1], points[2], batch),
+    Stick(points[2], points[3], batch),
+
+    Stick(points[4], points[5], batch),
+    Stick(points[5], points[6], batch),
+    Stick(points[6], points[7], batch),
+
+    Stick(points[8], points[9], batch),
+    Stick(points[9], points[10], batch),
+    Stick(points[10], points[11], batch),
+
+    Stick(points[12], points[13], batch),
+    Stick(points[13], points[14], batch),
+    Stick(points[14], points[15], batch),
+
+    Stick(points[1], points[5], batch),
+    Stick(points[2], points[6], batch),
+    Stick(points[3], points[7], batch),
+
+    Stick(points[5], points[9], batch),
+    Stick(points[6], points[10], batch),
+    Stick(points[7], points[11], batch),
+
+    Stick(points[9], points[13], batch),
+    Stick(points[10], points[14], batch),
+    Stick(points[11], points[15], batch)
+
+    ]
+
+---------------------------------------------------
+points = [
+    Point(410, 418, 5, batch, fixed = True),Point(349, 350, 5, batch),Point(274, 280, 5, batch),Point(192, 261, 5, batch),Point(115, 299, 5, batch),
+    Point(66, 389, 5, batch, fixed = False),Point(303, 200, 5, batch),Point(274, 97, 5, batch),Point(62, 216, 5, batch),Point(86, 101, 5, batch)
+    ]
+
+sticks = [
+    Stick(points[0], points[1], batch),
+    Stick(points[1], points[2], batch),
+    Stick(points[2], points[3], batch),
+    Stick(points[3], points[4], batch),
+    Stick(points[4], points[5], batch),
+
+    Stick(points[2], points[6], batch),
+    Stick(points[6], points[7], batch),
+
+    Stick(points[4], points[8], batch),
+    Stick(points[8], points[9], batch)
+    ]
+------------------Cloth----------------------------
+x = 100
+y = 400
+l = 20
+space = 20
+points = []
+sticks = []
+segments = 20
+holds = 15
+for i2 in range(holds):
+    points += [Point(x + (i2 * space), y, 2, batch = batch, fixed = True)]
+    for i in range(1, segments):
+        points += [Point(x + (i2 * space), y - (i * l), 2, batch = batch)]
+        sticks += [Stick(points[i + segments * i2 -1], points[i + segments * i2], batch)]
+
+for i in range(0, len(points) - segments, 2):
+    sticks += [Stick(points[i], points[i + segments], batch)]
+------------------Cloth----------------------------
+x = 100
+y = 300
+l = 15
+space = 20
+points = []
+sticks = []
+segments = 19
+holds = 15
+for i2 in range(holds):
+    points += [Point(x+ (i2 * space), y + i2*10, 2, batch = batch, fixed = True)]
+    for i in range(1, segments):
+        points += [Point(x+ (i2 * space) , y- (i * l) + i2*10, 2, batch = batch)]
+        sticks += [Stick(points[i + segments * i2 -1], points[i + segments * i2], batch)]
+
+for i in range(0, len(points) - segments):
+    sticks += [Stick(points[i], points[i + segments], batch)]
